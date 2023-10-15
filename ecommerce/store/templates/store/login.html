@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        .form-container{
+            background: rgb(9, 167, 167);
+             width: 400px;
+            height: 400px;
+            position: relative;
+            padding: 20px 0;
+            margin: auto;
+            margin-top: 40px;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.1);
+        }
+        .form-btn, h3{
+            text-align: center;
+            display: inline-block;
+        }
+        .form-container h3{
+            font-weight: bold;
+            padding: 0 10px;
+            color: #555;
+            cursor: pointer;
+            width: 100px;
+            display: inline-block;
+        }
+        .form-container form{
+            max-width: 300px;
+            padding: 0 20px;
+            position: absolute;
+            top: 130px;
+            transition: transform 1s;
+        }
+        form input{
+            width: 100%;
+            height: 30px;
+            margin: 10px 0;
+            padding: 0 10px;
+            border: 1px solid #acc;
+        }
+        form .btn{
+            width: 100%;
+            height: 30px;
+            border: none;
+            cursor: pointer;
+            margin: 20px 0;
+            text-align: center;
+            color: white;
+            background-color: dodgerblue;
+        }
+        form .btn:focus{
+            outline: none;
+        }
+        #Indicator{
+             width: 100px;
+            border: none;
+            background: #ff523b;
+            height: 3px;
+            margin-top: 8px;
+            transform: translateX(100px);
+            transition: transform 1s;
+        }
+    </style>
+</head>
+<body>
+    <div class="col-2">
+        <div class="form-container">
+            <div class="form-btn">
+                <h3>Login</h3>
+                <hr id="Indicator">
+            </div>
+            <form id="LoginForm" method="GET" action="">
+                {%csrf_token%}
+                <input type="name" name="username" class="form-control" placeholder="Username...">
+                <input type="password" name="password" class="form-control" placeholder="Password..">
+                <input type="submit" class="btn" value="Login">Login</input>
+                <a href="">Forget password</a>
+                <div>
+                    Don't have an account? <a href="{% url 'register'%}">Sign Up</a>
+                </div>
+            </form>
+        </div>
+        {% for message in messages%}
+            <p id="messages">{{message}}</p>
+        {% endfor%}
+    </div>
+</body>
+</html>
